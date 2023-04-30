@@ -268,26 +268,26 @@ embedding = embedding_layer(input_tensor)
 embedding_t = tf.transpose(embedding, perm=[1, 0, 2])
 
 # s_attention
-# qs = WQ_s(embedding_t)
-# ks = WK_s(embedding_t)
-# atten2 = attention_layer2([qs, ks])
-# norm_data_t = layer_normal2(atten2 + embedding_t)
-# norm_data_1 = tf.transpose(norm_data_t, perm=[1, 0, 2])
+qs = WQ_s(embedding_t)
+ks = WK_s(embedding_t)
+atten2 = attention_layer2([qs, ks])
+norm_data_t = layer_normal2(atten2 + embedding_t)
+norm_data_1 = tf.transpose(norm_data_t, perm=[1, 0, 2])
 
 # norm_data_1 = embedding
 
-# # t_attention
-# # q.shape: (batch_size, Timestep, qkv_length1)  3*10*2
-# qt = WQ_t(norm_data_1)
-# kt = WK_t(norm_data_1)
-# # attention_outputs.shape :(batch_size, Timestep, qkv_length1)  3*10*2
-# atten1 = attention_layer1([qt, kt])
-# # norm_data.shape: (batch_size, Timestep, embeddingdim)
-# norm_data_2 = layer_normal1(atten1 + norm_data_1)
-# hidden_tensor1 = lstm_layer(norm_data_2)
+# t_attention
+# q.shape: (batch_size, Timestep, qkv_length1)  3*10*2
+qt = WQ_t(norm_data_1)
+kt = WK_t(norm_data_1)
+# attention_outputs.shape :(batch_size, Timestep, qkv_length1)  3*10*2
+atten1 = attention_layer1([qt, kt])
+# norm_data.shape: (batch_size, Timestep, embeddingdim)
+norm_data_2 = layer_normal1(atten1 + norm_data_1)
+hidden_tensor1 = lstm_layer(norm_data_2)
 
 # hidden_tensor1 = lstm_layer(norm_data_1)
-hidden_tensor1 = lstm_layer(embedding)
+# hidden_tensor1 = lstm_layer(embedding)
 hidden_tensor2 = dense_layer1(hidden_tensor1)
 hidden_tensor3 = tf.math.tanh(hidden_tensor2)
 output_tensor = dense_layer2(hidden_tensor3)
