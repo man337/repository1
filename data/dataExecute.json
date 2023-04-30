@@ -1,0 +1,29 @@
+{
+  "data_source": "data/Next_Generation_Simulation__NGSIM__Vehicle_Trajectories_and_Supporting_Data.csv",
+  "road": "us-101",
+  "useCols": [
+    "Vehicle_ID",
+    "Frame_ID",
+    "Total_Frames",
+    "Global_Time",
+    "Global_X",
+    "Global_Y",
+    "Local_X",
+    "Local_Y",
+    "v_length",
+    "v_Width",
+    "v_Class",
+    "Location",
+    "v_Vel",
+    "Lane_ID"
+  ],
+  "area_length": 80,
+  "time_length": 20,
+  "area_step": 20,
+  "time_step": 30,
+  "stride": 1.0,
+  "hist_dist":8,
+  "hist_time":0,
+  "noise": 1,
+  "need_num": 20
+}
